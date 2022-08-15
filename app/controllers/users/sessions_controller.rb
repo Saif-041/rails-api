@@ -8,20 +8,17 @@ class Users::SessionsController < Devise::SessionsController
 
     private
     def respond_with(resource, _opts = {})
-    #var abc = response.headers.get("Authorization")
-      #var jsonData = JSON.parse(Headers.Authorization);
-    # pm.setEnvironmentVariable("token",jsonData.message.token);
-        #var token2: :zbzbzbz
-    render json: { message: 'Logged in successfully.', data: resource }, status: :ok
+
+    render json: { message: 'Logged in successfully.', status: 200,data: resource }, status: :ok
     end
     def respond_to_on_destroy
-      !current_user.present? ? log_out_success : log_out_failure
+      current_user.present? ? log_out_failure : log_out_success 
     end
     def log_out_success
-      render json: { message: "Logged out." }, status: :ok
+      render json: { message: "Logged out sucessfully.", status: 200 }, status: :ok
     end
     def log_out_failure
-      render json: { message: "Logged out failure."}, status: :unauthorized
+      render json: { message: "Logged out failure.", status: 500}, status: :unauthorized
     end
 
     #def jsonResponse
