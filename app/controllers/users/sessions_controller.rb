@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
       render json: { message: "Logged out sucessfully.", status: 200 }, status: :ok
     end
     def log_out_failure
-      render json: { message: "Logged out failure.", status: 500 }, status: :unauthorized
+      render json: { message: "Logged out failure.", status: 401 }, status: :ok
     end
 
     #def jsonResponse
