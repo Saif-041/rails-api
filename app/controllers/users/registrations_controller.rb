@@ -5,6 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     private
 
     def respond_with(resource, _opts = {})
+      byebug
       resource.persisted? ? register_success : register_failed
     end
 
