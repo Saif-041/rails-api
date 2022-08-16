@@ -29,7 +29,7 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def get_token
-      req.env['warden-jwt_auth.token']
+      request.env['warden-jwt_auth.token']
     end
 
     #def jsonResponse
