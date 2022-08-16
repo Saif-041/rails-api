@@ -12,18 +12,24 @@ class Users::SessionsController < Devise::SessionsController
       if resource.errors.any?
         render json: { message: "Some errors.", status: 401, token: '', data: '' }, status: :ok
       else
-        render json: { message: 'Logged in successfully.', status: 200, token: '' data: resource }, status: :ok
+        render json: { message: 'Logged in successfully.', status: 200, token: get_token, data: resource }, status: :ok
       end
     end
     
     def respond_to_on_destroy
       current_user.present? ? log_out_failure : log_out_success
     end
+
     def log_out_success
       render json: { message: "Logged out sucessfully.", status: 200 }, status: :ok
     end
+
     def log_out_failure
       render json: { message: "Logged out failure.", status: 401 }, status: :ok
+    end
+
+    def get_token
+      req.env['warden-jwt_auth.token']
     end
 
     #def jsonResponse
