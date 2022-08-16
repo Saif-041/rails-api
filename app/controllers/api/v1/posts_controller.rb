@@ -1,4 +1,8 @@
 class Api::V1::PostsController < ApplicationController
+  ## To fix the problem Can't verify CSRF token authenticity.
+  # uncomment below line.
+  #  skip_before_action :verify_authenticity_token
+
   before_action :authenticate_user!
   before_action :set_api_v1_post, only: %i[ show update destroy ]
 
