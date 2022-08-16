@@ -7,11 +7,12 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     private
+
     def respond_with(resource, _opts = {})
       if resource.errors.any?
-        render json: { message: "Some errors.", status: 401 }, status: :ok
+        render json: { message: "Some errors.", status: 401, token: '', data: '' }, status: :ok
       else
-        render json: { message: 'Logged in successfully.', status: 200, data: resource }, status: :ok
+        render json: { message: 'Logged in successfully.', status: 200, token: '' data: resource }, status: :ok
       end
     end
     
