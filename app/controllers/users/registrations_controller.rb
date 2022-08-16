@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
     respond_to :json
     before_action :authenticate_user!
-    # flash.now[:message] = "Hello Usman Sir"
+    
     private
 
     def respond_with(resource, _opts = {})
